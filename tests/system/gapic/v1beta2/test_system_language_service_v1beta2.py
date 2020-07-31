@@ -22,11 +22,12 @@ from google.cloud.language_v1beta2.proto import language_service_pb2
 
 
 class TestSystemLanguageService(object):
+
     def test_analyze_sentiment(self):
 
         client = language_v1beta2.LanguageServiceClient()
-        content = "Hello, world!"
+        content = 'Hello, world!'
         type_ = enums.Document.Type.PLAIN_TEXT
-        document = {"content": content, "type": type_}
+        document = {'content': content, 'type': type_}
         encoding_type = enums.EncodingType.NONE
         response = client.analyze_sentiment(document, encoding_type=encoding_type)
