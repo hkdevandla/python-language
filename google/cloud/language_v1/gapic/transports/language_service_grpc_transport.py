@@ -28,15 +28,17 @@ class LanguageServiceGrpcTransport(object):
     which can be used to take advantage of advanced
     features of gRPC.
     """
+
     # The scopes needed to make gRPC calls to all of the methods defined
     # in this service.
     _OAUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-language',
-        'https://www.googleapis.com/auth/cloud-platform',
+        "https://www.googleapis.com/auth/cloud-language",
+        "https://www.googleapis.com/auth/cloud-platform",
     )
 
-    def __init__(self, channel=None, credentials=None,
-                 address='language.googleapis.com:443'):
+    def __init__(
+        self, channel=None, credentials=None, address="language.googleapis.com:443"
+    ):
         """Instantiate the transport class.
 
         Args:
@@ -54,8 +56,7 @@ class LanguageServiceGrpcTransport(object):
         # exception (channels come with credentials baked in already).
         if channel is not None and credentials is not None:
             raise ValueError(
-                'The `channel` and `credentials` arguments are mutually '
-                'exclusive.',
+                "The `channel` and `credentials` arguments are mutually " "exclusive."
             )
 
         # Create the channel.
@@ -64,8 +65,8 @@ class LanguageServiceGrpcTransport(object):
                 address=address,
                 credentials=credentials,
                 options={
-                    'grpc.max_send_message_length': -1,
-                    'grpc.max_receive_message_length': -1,
+                    "grpc.max_send_message_length": -1,
+                    "grpc.max_receive_message_length": -1,
                 }.items(),
             )
 
@@ -74,16 +75,15 @@ class LanguageServiceGrpcTransport(object):
         # gRPC uses objects called "stubs" that are bound to the
         # channel and provide a basic method for each RPC.
         self._stubs = {
-            'language_service_stub': language_service_pb2_grpc.LanguageServiceStub(channel),
+            "language_service_stub": language_service_pb2_grpc.LanguageServiceStub(
+                channel
+            )
         }
-
 
     @classmethod
     def create_channel(
-                cls,
-                address='language.googleapis.com:443',
-                credentials=None,
-                **kwargs):
+        cls, address="language.googleapis.com:443", credentials=None, **kwargs
+    ):
         """Create and return a gRPC channel object.
 
         Args:
@@ -100,10 +100,7 @@ class LanguageServiceGrpcTransport(object):
             grpc.Channel: A gRPC channel object.
         """
         return google.api_core.grpc_helpers.create_channel(
-            address,
-            credentials=credentials,
-            scopes=cls._OAUTH_SCOPES,
-            **kwargs
+            address, credentials=credentials, scopes=cls._OAUTH_SCOPES, **kwargs
         )
 
     @property
@@ -126,7 +123,7 @@ class LanguageServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['language_service_stub'].AnalyzeSentiment
+        return self._stubs["language_service_stub"].AnalyzeSentiment
 
     @property
     def analyze_entities(self):
@@ -141,7 +138,7 @@ class LanguageServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['language_service_stub'].AnalyzeEntities
+        return self._stubs["language_service_stub"].AnalyzeEntities
 
     @property
     def analyze_entity_sentiment(self):
@@ -155,7 +152,7 @@ class LanguageServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['language_service_stub'].AnalyzeEntitySentiment
+        return self._stubs["language_service_stub"].AnalyzeEntitySentiment
 
     @property
     def analyze_syntax(self):
@@ -170,7 +167,7 @@ class LanguageServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['language_service_stub'].AnalyzeSyntax
+        return self._stubs["language_service_stub"].AnalyzeSyntax
 
     @property
     def classify_text(self):
@@ -183,7 +180,7 @@ class LanguageServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['language_service_stub'].ClassifyText
+        return self._stubs["language_service_stub"].ClassifyText
 
     @property
     def annotate_text(self):
@@ -197,4 +194,4 @@ class LanguageServiceGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['language_service_stub'].AnnotateText
+        return self._stubs["language_service_stub"].AnnotateText
